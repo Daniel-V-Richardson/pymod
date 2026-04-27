@@ -1,0 +1,84 @@
+[build-system]
+requires = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bacsys-pymod"
+version = "0.1.0"
+description = "Production-grade Modbus TCP/RTU driver for Python (import name: pymod)."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Bacsys", email = "richardson20june@gmail.com" }]
+keywords = ["modbus", "industrial", "iot", "scada", "rtu", "tcp", "bacsys"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Manufacturing",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Hardware",
+    "Topic :: System :: Hardware :: Hardware Drivers",
+    "Topic :: System :: Networking",
+    "Typing :: Typed",
+]
+
+dependencies = [
+    # pyserial is the de-facto serial port library on Linux+Windows; reimplementing
+    # it across platforms is a non-starter. Pure-Python wheels exist for ARM.
+    "pyserial>=3.5",
+]
+
+[project.optional-dependencies]
+# Opt-in structured logging. Library users who don't want it pay nothing.
+structured-logging = ["structlog>=24.1"]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "pytest-cov>=5.0",
+    "mypy>=1.10",
+    "ruff>=0.5",
+    "types-pyserial>=3.5",
+]
+docs = [
+    "sphinx>=7.0",
+    "sphinx-rtd-theme>=2.0",
+    "myst-parser>=2.0",
+    "sphinx-copybutton>=0.5",
+]
+
+[project.scripts]
+pymod = "pymod.cli:main"
+
+[project.urls]
+Homepage      = "https://github.com/bacsys/pymod"
+Documentation = "https://bacsys-pymod.readthedocs.io/"
+Repository    = "https://github.com/bacsys/pymod"
+Issues        = "https://github.com/bacsys/pymod/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pymod"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+    "hardware: tests that require a real Modbus device (skipped by default)",
+    "simulator: tests that require a running Modbus simulator",
+]
+
+[tool.mypy]
+strict = true
+python_version = "3.11"
+files = ["src/pymod"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "RUF"]
