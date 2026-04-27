@@ -1,5 +1,11 @@
 # bacsys-pymod
 
+[![PyPI version](https://img.shields.io/pypi/v/bacsys-pymod.svg)](https://pypi.org/project/bacsys-pymod/)
+[![Python versions](https://img.shields.io/pypi/pyversions/bacsys-pymod.svg)](https://pypi.org/project/bacsys-pymod/)
+[![Documentation Status](https://readthedocs.org/projects/bacsys-pymod/badge/?version=latest)](https://bacsys-pymod.readthedocs.io/en/latest/)
+[![CI](https://github.com/Daniel-V-Richardson/pymod/actions/workflows/ci.yml/badge.svg)](https://github.com/Daniel-V-Richardson/pymod/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/pypi/l/bacsys-pymod.svg)](https://github.com/Daniel-V-Richardson/pymod/blob/main/LICENSE)
+
 Production-grade **Modbus TCP / RTU driver** for Python. Library + one-shot CLI.
 
 > *Distribution name `bacsys-pymod`, import name `pymod`.*
@@ -106,7 +112,7 @@ The server has no internal datastore — the host application owns the data, the
 
 ### CLI
 
-```
+```bash
 pymod read  --host 127.0.0.1 --port 502 --area holding --start 0 --count 10 --dtype int16
 pymod write --host 127.0.0.1 --port 502 --area holding --start 0 --values 1,2,3 --dtype uint16
 pymod scan  --host 127.0.0.1 --port 502
