@@ -55,10 +55,10 @@ docs = [
 pymod = "pymod.cli:main"
 
 [project.urls]
-Homepage      = "https://github.com/bacsys/pymod"
+Homepage      = "https://github.com/Daniel-V-Richardson/pymod"
 Documentation = "https://bacsys-pymod.readthedocs.io/"
-Repository    = "https://github.com/bacsys/pymod"
-Issues        = "https://github.com/bacsys/pymod/issues"
+Repository    = "https://github.com/Daniel-V-Richardson/pymod"
+Issues        = "https://github.com/Daniel-V-Richardson/pymod/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/pymod"]
